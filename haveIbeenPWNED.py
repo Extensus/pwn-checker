@@ -5,7 +5,7 @@ import time
 
 # VARIABLES
 email = '123456'
-password = '123456'
+password = '123456admin'
 
 CHROME_PATH = 'C:\\Program Files (x86)\\Google\\Chrome\\Application'
 CHROMEDRIVER_PATH = 'C:\\Program Files (x86)\\chromedriver.exe'
