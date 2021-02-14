@@ -23,6 +23,7 @@ def wait(num):
 
 def get_email_pwn():
     password_button = driver.find_element_by_link_text("Home")
+    password_button.click()
     search_box = driver.find_element_by_class_name("form-control")
     search_box.send_keys(email)
     search_box.send_keys(Keys.ENTER)
