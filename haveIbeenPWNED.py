@@ -8,12 +8,22 @@ import cryptocode
 decrypt_key = '#314159265358979323'
 
 
-def get_pass_from_base():
+def get_pass_from_base(txt):
     with open('datainfo.txt', 'r+') as f:
         content = f.readlines()
         raw_password = cryptocode.decode(decrypt_key, content[0])
         raw_email = cryptocode.decode(decrypt_key, content[0])
-        return {email_1: raw_email, pass_1:raw_password}
+        if txt == 'raw_email':
+            return raw_email
+        elif txt == "raw_password":
+            return raw_password
+        else:
+            pass
+
+
+# VARIABLES
+raw_password = get_pass_from_base("raw_password")
+raw_email = get_pass_from_base("raw_email")
 
 
 def enter_passes_to_base():
@@ -23,10 +33,6 @@ def enter_passes_to_base():
         f.write(password + "\n")
         f.write(email + "\n")
 
-
-# VARIABLES
-pass_dict = get_pass_from_base()
-raw_email =
 
 CHROME_PATH = 'C:\\Program Files (x86)\\Google\\Chrome\\Application'
 CHROMEDRIVER_PATH = 'C:\\Program Files (x86)\\chromedriver.exe'
