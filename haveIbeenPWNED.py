@@ -11,8 +11,8 @@ decrypt_key = '#314159265358979323'
 def get_pass_from_base(txt):
     with open('datainfo.txt', 'r+') as f:
         content = f.readlines()
-        raw_password = cryptocode.decode(decrypt_key, content[0])
-        raw_email = cryptocode.decode(decrypt_key, content[0])
+        raw_password = cryptocode.decrypt(decrypt_key, content[0])
+        raw_email = cryptocode.decrypt(decrypt_key, content[0])
         if txt == 'raw_email':
             return raw_email
         elif txt == "raw_password":
@@ -25,6 +25,9 @@ def get_pass_from_base(txt):
 raw_password = get_pass_from_base("raw_password")
 raw_email = get_pass_from_base("raw_email")
 
+
+print(raw_password)
+print(raw_email)
 
 def enter_passes_to_base():
     with open('datainfo.txt', 'w') as f:
@@ -43,11 +46,7 @@ WINDOW_SIZE = "1920,1080"
 driver = webdriver.Chrome(CHROMEDRIVER_PATH)
 driver.get("https://haveibeenpwned.com/")
 
-with open('datainfo.txt', 'w') as f:
-    password = cryptocode.encrypt(raw_password)
-    email = cryptocode.encrypt(raw_email)
-    f.write(password + "\n")
-    f.write(email + "\n")
+enter_passes_to_base()
 
 
 def wait(num):
