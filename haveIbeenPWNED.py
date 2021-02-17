@@ -3,31 +3,27 @@ from selenium.webdriver.common.keys import Keys
 import time
 import cryptocode
 
-
 # DECRYPTION KEY
 decrypt_key = '#314159265358979323'
+
+# VARIABLE DECLARATION
+raw_email = ""
+raw_password = ""
 
 
 def get_pass_from_base(txt):
     with open('datainfo.txt', 'r+') as f:
         content = f.readlines()
-        raw_password = cryptocode.decrypt(decrypt_key, content[0])
-        raw_email = cryptocode.decrypt(decrypt_key, content[0])
+        print(content)
+        r_password = cryptocode.decrypt(decrypt_key, content[0])
+        r_email = cryptocode.decrypt(decrypt_key, content[0])
         if txt == 'raw_email':
-            return raw_email
+            return r_email
         elif txt == "raw_password":
-            return raw_password
+            return r_password
         else:
             pass
 
-
-# VARIABLES
-raw_password = get_pass_from_base("raw_password")
-raw_email = get_pass_from_base("raw_email")
-
-
-print(raw_password)
-print(raw_email)
 
 def enter_passes_to_base():
     with open('datainfo.txt', 'w') as f:
@@ -35,18 +31,6 @@ def enter_passes_to_base():
         email = cryptocode.encrypt(decrypt_key, raw_email)
         f.write(password + "\n")
         f.write(email + "\n")
-
-
-CHROME_PATH = 'C:\\Program Files (x86)\\Google\\Chrome\\Application'
-CHROMEDRIVER_PATH = 'C:\\Program Files (x86)\\chromedriver.exe'
-WINDOW_SIZE = "1920,1080"
-
-
-# STARTING DRIVER
-driver = webdriver.Chrome(CHROMEDRIVER_PATH)
-driver.get("https://haveibeenpwned.com/")
-
-enter_passes_to_base()
 
 
 def wait(num):
@@ -77,8 +61,18 @@ def get_pass_pwn():
     return result_password
 
 
-print(get_email_pwn())
-print(get_pass_pwn())
+##########################################################
 
+CHROME_PATH = 'C:\\Program Files (x86)\\Google\\Chrome\\Application'
+CHROMEDRIVER_PATH = 'C:\\Program Files (x86)\\chromedriver.exe'
+WINDOW_SIZE = "1920,1080"
+# STARTING DRIVER
+driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+driver.get("https://haveibeenpwned.com/")
+
+
+# GET STUFF FROM BASE
+raw_password = get_pass_from_base("raw_password")
+raw_email = get_pass_from_base("raw_email")
 
 driver.quit()
