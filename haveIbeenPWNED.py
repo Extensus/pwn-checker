@@ -7,22 +7,28 @@ import cryptocode
 decrypt_key = '#314159265358979323'
 
 # VARIABLE DECLARATION
-raw_email = ""
-raw_password = ""
+raw_email = "email"
+raw_password = "password"
 
 
 def get_pass_from_base(txt):
-    with open('datainfo.txt', 'r+') as f:
-        content = f.readlines()
-        print(content)
-        r_password = cryptocode.decrypt(decrypt_key, content[0])
-        r_email = cryptocode.decrypt(decrypt_key, content[0])
-        if txt == 'raw_email':
-            return r_email
-        elif txt == "raw_password":
-            return r_password
-        else:
-            pass
+    try:
+        with open('datainfo.txt', 'r+') as f:
+            content = f.readlines()
+            print(content)
+            p_1 = content[0]
+            e_1 = content[1]
+            r_password = cryptocode.decrypt(p_1, decrypt_key)
+            r_email = cryptocode.decrypt(e_1, decrypt_key)
+            print(r_password)
+            if txt == 'raw_email':
+                return r_email
+            elif txt == "raw_password":
+                return r_password
+            else:
+                pass
+    except IndexError:
+        pass
 
 
 def enter_passes_to_base():
@@ -75,4 +81,7 @@ driver.get("https://haveibeenpwned.com/")
 raw_password = get_pass_from_base("raw_password")
 raw_email = get_pass_from_base("raw_email")
 
-driver.quit()
+print(raw_email)
+print(raw_password)
+
+# driver.quit()
