@@ -74,6 +74,7 @@ CHROMEDRIVER_PATH = 'C:\\Program Files (x86)\\chromedriver.exe'
 WINDOW_SIZE = "1920,1080"
 # STARTING DRIVER
 driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+
 driver.get("https://haveibeenpwned.com/")
 
 
