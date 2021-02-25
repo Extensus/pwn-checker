@@ -11,6 +11,16 @@ raw_email = "email"
 raw_password = "password"
 
 
+def get_email_from_prompt():
+    raw_email = input("Enter the Email to check: \n")
+    return raw_email
+
+
+def get_pass_from_prompt():
+    raw_password = input("Enter the password to check: \n")
+    return raw_password
+
+
 def get_pass_from_base(txt):
     try:
         with open('datainfo.txt', 'r+') as f:
@@ -72,17 +82,23 @@ def get_pass_pwn():
 CHROME_PATH = 'C:\\Program Files (x86)\\Google\\Chrome\\Application'
 CHROMEDRIVER_PATH = 'C:\\Program Files (x86)\\chromedriver.exe'
 WINDOW_SIZE = "1920,1080"
-# STARTING DRIVER
-driver = webdriver.Chrome(CHROMEDRIVER_PATH)
 
-driver.get("https://haveibeenpwned.com/")
+##########################################################
 
-
-# GET STUFF FROM BASE
-raw_password = get_pass_from_base("raw_password")
-raw_email = get_pass_from_base("raw_email")
+raw_email = get_email_from_prompt()
+raw_password = get_pass_from_prompt()
 
 print(raw_email)
 print(raw_password)
 
-# driver.quit()
+##########################################################
+
+# STARTING DRIVER
+driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+driver.get("https://haveibeenpwned.com/")
+
+get_email_pwn()
+get_pass_pwn()
+
+
+driver.quit()
